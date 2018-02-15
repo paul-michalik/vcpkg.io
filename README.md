@@ -6,7 +6,7 @@ The [vcpkg](https://github.com/Microsoft/vcpkg) community is doing a great job t
 
 `vcpkg.io pull [url] [--into <name>]`
 
-Pulls (or clones) the master from `[url]` into a folder `vcpkg.io/vcpkg`. Default is to pull the latest master from https://github.com/Microsoft/vcpkg.git into `vcpkg.io/vcpkg`. Examples:
+Pulls (or clones) the master from `[url]` into a folder `vcpkg.io/<name>`. Default is to pull the latest master from https://github.com/Microsoft/vcpkg.git into `vcpkg.io/vcpkg`. Examples:
 * `vcpkg.io pull`
 * `vcpkg.io pull https://github.com/paul-michalik/vcpkg.git --into vcpkg-paul-michalik`
 
