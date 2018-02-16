@@ -8,33 +8,51 @@ The [vcpkg](https://github.com/Microsoft/vcpkg) community is doing a great job t
 
 `vcpkg.io clone [[options] <repository> <directory>]`
 
-Clones the master from `[url]` into a folder `vcpkg.io/<name>`. Default is to clone from https://github.com/Microsoft/vcpkg.git into `vcpkg.io/vcpkg`. 
+Clones from `<repository>` into a folder `<directory>`. Default is to clone from https://github.com/Microsoft/vcpkg.git into `vcpkg.io/vcpkg`. 
 
 Examples:
 * `vcpkg.io clone`
 * `vcpkg.io clone https://github.com/paul-michalik/vcpkg.git vcpkg-paul-michalik`
 
 Synopsis:
-* `git clone [options] <repository> <directory>`
+
+* `git clone https://github.com/paul-michalik/vcpkg.git`
+
+
 
 ## pull
 
-`vcpkg.io pull <folder>`
+`vcpkg.io pull <directory>`
 
-Pulls the master from `[url]` into a folder `vcpkg.io/<name>`. Default is to pull the latest master from https://github.com/Microsoft/vcpkg.git into `vcpkg.io/vcpkg`. 
+Pulls changes from configured upstream into a folder `vcpkg.io/<directory>`. Default `<directory>` is `vcpkg.io/vcpkg`. The export associated with this repository are invalidated.
 
 Examples:
 * `vcpkg.io pull`
-* `vcpkg.io pull -url https://github.com/paul-michalik/vcpkg.git -into vcpkg-paul-michalik`
+* `vcpkg.io pull vcpkg-paul-michalik`
 
-Synopsis:
-* `git clone "%Url%" "%Into%" & cd "%Into%" & git checkout -b master`
-* `cd "%Into%" & git checkout -b master & git pull`
+Synopsis: 
+
+```
+pushd vcpkg
+git pull
+vcpkg upgrade --no-dry-run
+popd
+```
+
 
 ## download
 
 `vcpkg.io download <revision> [url]` 
 
-Downloads the `[revision]` given by Git commit hash from `[url]` into a folder `vcpkg.io/[revision]`. Default `[url]` is `https://github.com/Microsoft/vcpkg`. Examples:
+Downloads the `[revision]` given by Git commit hash from `[url]` into a folder `vcpkg.io/[revision]`. Default `[url]` is https://github.com/Microsoft/vcpkg. 
+
+Examples:
+
 * `vcpkg.io download f279e9f5e3a569b237dbaca44bbc7225f1d7e27d`
 * `vcpkg.io download 240d1d2facc5407fbd002b678f561bfacaccdee7 https://github.com/paul-michalik/vcpkg`  
+
+Synopsis:
+```
+Invoke-WebRequest "https://github.com/Microsoft/vcpkg/archive/$CommitTag.zip" -OutFile "$CommitTag.zip"
+Expand-Archive "$CommitTag.zip" -DestinationPath "$CommitTag"
+```
