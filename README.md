@@ -4,6 +4,8 @@ Manage bundles created by https://github.com/Microsoft/vcpkg
 
 The [vcpkg](https://github.com/Microsoft/vcpkg) community is doing a great job to provide a brewing package manager for the Windows platform. However, vcpkg does not directly cover the distribution of compatible bundles of binaries and other artifacts. This is where `vcpkg.io` jumps in. It helps to maintain, deploy and consume pre-built vcpkg artifacts. vcpkg.io consists of one front-end script `vcpkgi.io` which supports few commands to accomplish this task. 
 
+## Commands
+
 `vcpkg.io clone [[options] <repository> <directory>]`
 
 Clones the master from `[url]` into a folder `vcpkg.io/<name>`. Default is to clone from https://github.com/Microsoft/vcpkg.git into `vcpkg.io/vcpkg`. 
@@ -26,6 +28,8 @@ Examples:
 Synopsis:
 * `git clone "%Url%" "%Into%" & cd "%Into%" & git checkout -b master`
 * `cd "%Into%" & git checkout -b master & git pull`
+
+---
 
 `vcpkg.io download <revision> [url]` 
 
