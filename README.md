@@ -53,6 +53,7 @@ Examples:
 
 Synopsis:
 ```
+$CommitTag='f279e9f5e3a569b237dbaca44bbc7225f1d7e27d'
 Invoke-WebRequest "https://github.com/Microsoft/vcpkg/archive/$CommitTag.zip" -OutFile "$CommitTag.zip"
-Expand-Archive "$CommitTag.zip" -DestinationPath "$CommitTag"
+Expand-Archive "$CommitTag.zip" -DestinationPath ."
 ```
