@@ -1,0 +1,33 @@
+remote_setting:
+    repository_name: vcpkg/0.0.0-1@had/vcpkg
+    repository_url: https://api.bintray.com/conan/apattnaik0721013/vcpkg
+    remote_client: conan
+    username: null
+    password: null
+
+binary_setting:
+    bundle_name: ['orb_slam2']
+    unique_id: ['15e4f46b45c432a41ee6a962609039bc2497ec19']
+    os: ['windows']
+    arch: ['x64']
+    sub_parts: ['0']
+
+vcpkg_setting:
+    vcpkg_remote_url: https://github.com/Microsoft/vcpkg.git
+    vcpkg_local_path: null
+    package_list:
+    - boost-accumulators
+    - boost-filesystem
+    - boost-property-tree
+    - boost-log
+    - boost-math
+    - eigen3
+    - opencv[ffmpeg]
+    - pangolin
+    - gtest
+    - g2o
+    triplet_list: 
+    - x64-windows
+
+action: upload
+

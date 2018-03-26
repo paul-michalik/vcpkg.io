@@ -1,0 +1,17 @@
+remote_setting:
+    repository_name: vcpkg/0.0.0-1@had/vcpkg
+    repository_url: https://api.bintray.com/conan/apattnaik0721013/vcpkg
+    remote_client: conan
+
+binary_setting:
+    bundle_name: ['orb_slam2']
+    unique_id: ['15e4f46b45c432a41ee6a962609039bc2497ec19']
+    os: ['windows']
+    arch: ['x64']
+    sub_parts : ['0']
+
+download_setting:
+    download_binary_path: 'D:\Download_bin'
+    import_vcpkg_path: null
+
+action: download
