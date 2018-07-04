@@ -1,0 +1,5 @@
+[requires] 
+{}
+
+[imports] 
+pkg, * -> {} # Copies all dll files from packages bin folder to my "bin" folder 
