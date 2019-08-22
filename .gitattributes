@@ -1,0 +1,11 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+# Force the following file types to have Unix line endings
+*.sh text eol=lf
+*.py text eol=lf
+Makefile text eol=lf
+
+
