@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -exv
+set -e
 
 function GetCurDir() {
     realpath "$(dirname "${BASH_SOURCE}")"
