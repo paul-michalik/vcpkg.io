@@ -1,0 +1,3 @@
+# We first ignore everything and add stuff as we go:
+**
+!/vcpkg.io/docker/*
