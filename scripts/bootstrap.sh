@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
-set -e
+set -eu
 
-function CleanUp() {
-    local exitCode=$?
-    #echo "$(basename ${BASH_SOURCE})(${LINENO}): CleanUp, exitCode=${exitCode}"
-}
-
-trap CleanUp EXIT
-
-function GetCurDir() {
+function bootstrap.GetCurDir() {
     printf "%s" "$(realpath "$(dirname "${BASH_SOURCE}")")"
 }
 
-. "$(GetCurDir)/version.sh"
-
-function DownloadVcPkg() {
+function bootstrap.DownloadVcPkg() {
     [[ ! -d "${VI_VcPkgDir}" ]] && mkdir -p "${VI_VcPkgDir}"
 
     [[ ! -e "${VI_VcPkgDir}/vcpkg.zip" ]] && curl -L "http://github.com/microsoft/vcpkg/archive/${VI_VcPkgCommitHash}.zip" -o "${VI_VcPkgDir}/vcpkg.zip"
@@ -37,5 +28,13 @@ function BootstrapVcPkg() {
     fi
 }
 
-DownloadVcPkg
-BootstrapVcPkg
+function bootstrap.Main() {
+    source "${bootstrap.GetCurDir}/configure.sh" "$@"
+    ($(basename "${BASH_SOURCE}").DownloadVcPkg
+    ($(basename "${BASH_SOURCE}").BootstrapVcPkg "$@"
+}
+
+# Invoke main if not explicitly disabled by passing first argument -noexec or --noexec  
+if [[ 0 -eq "$#" || 0 -lt "$#" && ! "${1}" =~ ^[-]{1,2}noexec$ ]]; then
+    $(basename "${BASH_SOURCE}" .sh).Main "$@"
+fi
