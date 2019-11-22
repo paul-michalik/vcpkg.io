@@ -13,20 +13,20 @@ function configure.ShowUsage() {
     cat <<EOF
 Synopsis: 
 
-    $(basename ${BASH_SOURCE}) [options] --url <url> --commit <tag|version> <--> <package names>
+    $(basename ${BASH_SOURCE}) [options] --url <url> --commit <tag|version> --triplet <triplet> <--> <package names>
 
 Main options:
     --url|-u
         Url of the vcpkg repository 
-        Default: ${VI_VcPkgUrls} or content of "VI_VcPkgUrl" variable
+        Default: ${VI_VcPkgUrls} or content of "VI_VcPkgUrl" shell variable
     --commit|-c
         Commit tag of the required version or version number of a release
-        Default: "2019.10" or content of VI_VcPkgCommit variable
-    --dir|-d
-        Root directory for vcpkg bundles
-        Default: ${configure.GetPrjDir}/.vcpkg
+        Default: "2019.10" or content of "VI_VcPkgCommit" shell variable
+    --triplet|-t
+        The vcpkg triplet. 
+        Default: ${VI_VcPkgTriplet} or content of "VI_VcPkgTriplet" shell variable
     -- All positional arguments following "--" are interpreted as package names in vcpkg supported format including features
-        Default: Empty aka no packages or content VI_VcPkgPackages shell variable array
+        Default: Empty or content "VI_VcPkgPackages" shell variable array
 EOF
 }
 
@@ -40,16 +40,20 @@ function configure.Defaults() {
         declare -g VI_VcPkgCommit=2019.10
     fi
 
+    if [[ ! -v VI_VcPkgDir ]]; then
+        declare -g VI_VcPkgDir="$(configure.GetPrjDir)/.vcpkg"
+    fi
+
+    if [[ ! -v VI_VcPkgTriplet ]]; then
+        declare -g VI_VcPkgTriplet=x64-linux
+    fi
+
     if [[ ! -v VI_VcPkgPackages ]]; then
         declare -g VI_VcPkgPackages=()
     fi
 
     if [[ ! -v VI_VcPkgPackagesHash ]]; then
         declare -g VI_VcPkgPackagesHash=""
-    fi
-
-    if [[ ! -v VI_VcPkgDir ]]; then
-        declare -g VI_VcPkgDir="$(configure.GetPrjDir)/.vcpkg/${VI_VcPkgCommit}"
     fi
 
     if [[ ! -v VI_VcPkgConfigDir ]]; then
@@ -76,8 +80,8 @@ function configure.ParseArgs() {
                 VI_VcPkgCommit="${2}"
                 ((actArgCount+=1))
                 shift 2;;
-            --dir|-d)
-                VI_VcPkgDir="${2}"
+            --triplet|-t)
+                VI_VcPkgTriplet="${2}"
                 ((actArgCount+=1))
                 shift 2;;
             --) # package list

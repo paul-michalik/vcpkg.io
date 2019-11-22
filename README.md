@@ -37,16 +37,11 @@ vcpkg.io export --commit 2019.09 -- aws-sdk-cpp[batch,s3,sts] protobuf[zlib] boo
 
 ## Environment variables and defaults
 
-* Required:
-```
-VI_Platform=x64
-VI_SystemName=windows
-```
-* Inferred: 
-```
-VI_VcPkgDir=~/vcpkg.io/.vcpkg/2019.7.31
-VI_Toolset=msvc
-VI_VcPkgTriplet=x64-windows
-VI_VcPkgCommitHash=3dda86bd2785933485225202a710cde22c3b1ae1
-VI_VcPkgVersion=2019.7.31
-```
+All shell variables matching the pattern `^VI_VcPkg[A-Z].*` are reserved for usage by `vcpkg.io`
+
+Known variables with defaults:
+
+| Name      | Default | Semantics| 
+| :------------- |:-----|:----:|
+| `VI_VcPkgUrl` | `https://github.com/microsoft/vcpkg` | |
+| `VI_VcPkgCommit` | `2019.10` | |

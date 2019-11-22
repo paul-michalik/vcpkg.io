@@ -19,7 +19,7 @@ phases:
   pre_build:
     commands:
       - echo Entered the pre_build phase...
-      - ./docker/x64-linux-gcc/build.sh
+      - ./docker/x64-linux/build.sh
       #- docker login –u User –p $LOGIN_PASSWORD
     finally:
       - echo This always runs even if the login command fails 

@@ -1,0 +1,1 @@
+ aws-sdk-cpp[batch,s3,sts] boost[MPI] protobuf[zlib] zlib
